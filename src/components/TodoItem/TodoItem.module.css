@@ -1,0 +1,44 @@
+.todoItem{
+    display: flex;
+    background: #8758ff;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 400px;
+}
+
+.todoItem__title{
+
+}
+
+
+
+.todoItem_donned{
+    background: #1A1A40;
+    color: #fff;
+    border: 1px solid #8758ff;
+    cursor: pointer;
+}
+
+.todoItem__doneBtn{
+    background: none;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.todoItem__delBtn{
+    margin-left: 10px;
+    background: none;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.todoItem__btnWrapper{
+    margin-left: auto;
+}
