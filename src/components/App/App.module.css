@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+ul {
+  list-style-type:  none;
+}
+
 body {
   color: #fff;
   background-color: #8758ff;
@@ -12,7 +16,7 @@ body {
   align-items: center;
 }
 
-.todo{
+.wrapper{
   text-align: center;
   background: #1A1A40;
   margin-top: 5rem;
@@ -21,7 +25,7 @@ body {
   width: 500px;
 }
 
-.todo__input{
+.input{
   outline: none;
   background: none;
   border: 1px solid #8758ff;
@@ -30,11 +34,11 @@ body {
   color: #fff;
 }
 
-.todo__input::placeholder {
+.input::placeholder {
   color: #ffffff4d;
 }
 
-.todo__btn{
+.submitBtn{
   background: #8758ff;
   color: #fff;
   border: none;
@@ -42,6 +46,6 @@ body {
   cursor: pointer;
 }
 
-.todo__title{
+.title{
   font-size: 30px;
 }

@@ -8,27 +8,21 @@
     width: 400px;
 }
 
-.todoItem__title{
-
-}
-
-
-
-.todoItem_donned{
+.donned{
     background: #1A1A40;
     color: #fff;
     border: 1px solid #8758ff;
     cursor: pointer;
 }
 
-.todoItem__doneBtn{
+.doneBtn{
     background: none;
     color: #fff;
     border: none;
     cursor: pointer;
 }
 
-.todoItem__delBtn{
+.delBtn{
     margin-left: 10px;
     background: none;
     padding: 5px;
@@ -37,8 +31,6 @@
     cursor: pointer;
 }
 
-
-
-.todoItem__btnWrapper{
+.btnsWrapper{
     margin-left: auto;
 }
