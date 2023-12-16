@@ -1,11 +1,22 @@
 .todoItem{
     display: flex;
+    align-items: center;
     background: #8758ff;
     color: #fff;
     padding: 0.75rem 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
     width: 400px;
+}
+
+
+.doneBtn{
+    padding: 7px;
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
 }
 
 .donned{
@@ -15,19 +26,13 @@
     cursor: pointer;
 }
 
-.doneBtn{
-    background: none;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
 .delBtn{
+    padding: 7px;
     margin-left: 10px;
     background: none;
-    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
     color: #fff;
-    border: none;
     cursor: pointer;
 }
 

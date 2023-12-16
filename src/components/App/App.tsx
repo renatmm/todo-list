@@ -25,7 +25,7 @@ function App() {
       };
       const newTodoList = [...todoList, newItem];
       setTodoList(newTodoList);
-      localStorage.setItem('todoList', JSON.stringify(newTodoList)); // Save to localStorage
+      localStorage.setItem('todoList', JSON.stringify(newTodoList));
     }
     setInputValue("");
   };
@@ -33,7 +33,7 @@ function App() {
   const removeTodoItem = (id: string) => {
     const updatedTodoList = todoList.filter(item => item.id !== id);
     setTodoList(updatedTodoList);
-    localStorage.setItem('todoList', JSON.stringify(updatedTodoList)); // Save to localStorage
+    localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
   };
 
   return (
