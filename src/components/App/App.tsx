@@ -1,45 +1,35 @@
-import React, {useState, useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TodoList from '../TodoList/TodoList';
 import styles from './App.module.css'
-
-interface IItem {
-  id: string;
-  name: string;
-}
+import {addTodo, removeTodo, setInputValue} from '../../redux/actions'
+import { useSelector, useDispatch } from 'react-redux';
+import { IRootState, ITodoItem } from '../../types'
 
 function App() {
-  const [inputValue, setInputValue] = useState<string>()
-  const [todoList, setTodoList] = useState<IItem[]>([]);
-
-  useEffect(() => {
-    const savedTodoList = JSON.parse(localStorage.getItem('todoList') || '[]');
-    setTodoList(savedTodoList);
-  }, []);
+  const inputValue = useSelector((state: IRootState) => state.inputValue);
+  const todoList = useSelector((state: IRootState) => state.todoList);
+  const dispath = useDispatch();
 
   const addTodoItem = () => {
     if (inputValue) {
-      const newItem: IItem = {
+      const newItem: ITodoItem = {
         id: uuidv4(),
         name: inputValue,
+        isTodoDone: false
       };
-      const newTodoList = [...todoList, newItem];
-      setTodoList(newTodoList);
-      localStorage.setItem('todoList', JSON.stringify(newTodoList));
+      dispath(addTodo(newItem))
     }
-    setInputValue("");
+    dispath(setInputValue(''))
   };
 
   const removeTodoItem = (id: string) => {
-    const updatedTodoList = todoList.filter(item => item.id !== id);
-    setTodoList(updatedTodoList);
-    localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
+    dispath(removeTodo(id));
   };
 
   return (
       <div className={styles.wrapper}>
           <h1 className={styles.title}>Get Things Done!</h1>
-          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder='What is the task today?' className={styles.input} type="text"/>
+          <input value={inputValue} onChange={(e) => dispath(setInputValue(e.target.value))} placeholder='What is the task today?' className={styles.input} type="text"/>
           <button onClick={addTodoItem} className={styles.submitBtn}>Add task</button>
           {todoList.length > 0 && <TodoList todoList={todoList} onRemoveItem={removeTodoItem}/>}
       </div>
