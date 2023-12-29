@@ -6,18 +6,25 @@ const initialState: IRootState = {
 };
 
 const reducer = (state = initialState, action: Action): IRootState => {
+  const todoListFromLocalStorage = localStorage.getItem('todoList')
+  state.todoList = todoListFromLocalStorage ? JSON.parse(todoListFromLocalStorage) : []
   switch (action.type) {
     case 'ADD_TODO':
-      return {
+      const resultAddingTodo = {
         ...state,
         todoList: [...state.todoList, action.payload]
-      };
+      }
+      localStorage.setItem('todoList', JSON.stringify(resultAddingTodo.todoList))
+      return resultAddingTodo;
+
 
     case 'REMOVE_TODO':
-      return {
+      const resultRemovingTodo = {
         ...state,
         todoList: state.todoList.filter((item: ITodoItem) => item.id !== action.payload)
-      };
+      }
+      localStorage.setItem('todoList', JSON.stringify(resultRemovingTodo.todoList))
+      return resultRemovingTodo;
 
     case 'SET_INPUT':
       return {
@@ -26,7 +33,7 @@ const reducer = (state = initialState, action: Action): IRootState => {
       };
 
     case 'TOGGLE':
-      return {
+      const resultTogglingTodo = {
         ...state,
         todoList: state.todoList.map((item: ITodoItem) => {
           if (item.id === action.payload) {
@@ -37,7 +44,9 @@ const reducer = (state = initialState, action: Action): IRootState => {
           }
           return item;
         })
-      };
+      }
+      localStorage.setItem('todoList', JSON.stringify(resultTogglingTodo.todoList))
+      return resultTogglingTodo;
 
     default:
       return state;
