@@ -8,7 +8,7 @@ import { IRootState, ITodoItem } from '../../types'
 function App() {
   const inputValue = useSelector((state: IRootState) => state.inputValue);
   const todoList = useSelector((state: IRootState) => state.todoList);
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const addTodoItem = () => {
     if (inputValue) {
@@ -17,19 +17,19 @@ function App() {
         name: inputValue,
         isTodoDone: false
       };
-      dispath(addTodo(newItem))
+      dispatch(addTodo(newItem))
     }
-    dispath(setInputValue(''))
+    dispatch(setInputValue(''))
   };
 
   const removeTodoItem = (id: string) => {
-    dispath(removeTodo(id));
+    dispatch(removeTodo(id));
   };
 
   return (
       <div className={styles.wrapper}>
           <h1 className={styles.title}>Get Things Done!</h1>
-          <input value={inputValue} onChange={(e) => dispath(setInputValue(e.target.value))} placeholder='What is the task today?' className={styles.input} type="text"/>
+          <input value={inputValue} onChange={(e) => dispatch(setInputValue(e.target.value))} placeholder='What is the task today?' className={styles.input} type="text"/>
           <button onClick={addTodoItem} className={styles.submitBtn}>Add task</button>
           {todoList.length > 0 && <TodoList todoList={todoList} onRemoveItem={removeTodoItem}/>}
       </div>

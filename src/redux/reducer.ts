@@ -3,6 +3,11 @@ import { IRootState, Action, ITodoItem } from '../types';
 const initialState: IRootState = {
   inputValue: '',
   todoList: [],
+  currentTodo: {
+    id: '',
+    name: '',
+    isTodoDone: false
+  }
 };
 
 const reducer = (state = initialState, action: Action): IRootState => {
@@ -45,8 +50,22 @@ const reducer = (state = initialState, action: Action): IRootState => {
           return item;
         })
       }
-      localStorage.setItem('todoList', JSON.stringify(resultTogglingTodo.todoList))
-      return resultTogglingTodo;
+    localStorage.setItem('todoList', JSON.stringify(resultTogglingTodo.todoList))
+    return resultTogglingTodo;
+
+    case 'SET_TODO_LIST':
+      const newTodoList = {
+        ...state,
+        todoList: action.payload
+      };
+    localStorage.setItem('todoList', JSON.stringify(newTodoList.todoList))
+    return newTodoList;
+
+    case 'SET_CURRENT_TODO':
+      return {
+        ...state,
+        currentTodo: action.payload
+      };
 
     default:
       return state;

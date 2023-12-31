@@ -8,6 +8,7 @@
     border-radius: 5px;
     margin-bottom: 1rem;
     width: 400px;
+    cursor: grab;
 }
 
 
@@ -24,7 +25,10 @@
     background: #1A1A40;
     color: #fff;
     border: 1px solid #8758ff;
-    cursor: pointer;
+}
+
+.over{
+    border: 5px solid lightgrey;
 }
 
 .delBtn{
