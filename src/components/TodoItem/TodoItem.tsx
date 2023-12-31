@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import {setToggle, setTodoList, setCurrentTodo} from '../../redux/actions'
 import styles from './TodoItem.module.css';
-import { DragEvent, useState } from 'react';
+import { DragEvent } from 'react';
 import { IRootState, ITodoItem } from '../../types';
 
 
@@ -29,7 +29,6 @@ const TodoItem: React.FC<TodoItemProps> = ({todo, onRemoveItem}) => {
   };
 
   function dragStartHandler(e: DragEvent<HTMLLIElement>, todo:ITodoItem): void {
-    console.log(`START ${todo.name}`)
     dispatch(setCurrentTodo(todo))
   }
 
@@ -37,21 +36,21 @@ const TodoItem: React.FC<TodoItemProps> = ({todo, onRemoveItem}) => {
     e.preventDefault();
     const target = e.target as HTMLLIElement;
     if(target.nodeName  === 'LI'){
-      target.style.border = '5px solid lightgrey';
+      target.classList.add(styles.over);
     }
   }
 
   function dragLeaveHandler(e: DragEvent<HTMLLIElement>): void {
     const target = e.target as HTMLLIElement;
     if(target.nodeName  === 'LI'){
-      target.style.border = '1px solid #8758ff' 
+      target.classList.remove(styles.over);
     }
   }
 
   function dragEndHandler(e: DragEvent<HTMLLIElement>): void {
     const target = e.target as HTMLLIElement;
     if(target.nodeName  === 'LI'){
-      target.style.border = '1px solid #8758ff' 
+      target.classList.remove(styles.over); 
     }
   }
 
@@ -59,19 +58,18 @@ const TodoItem: React.FC<TodoItemProps> = ({todo, onRemoveItem}) => {
     e.preventDefault()
     const target = e.target as HTMLLIElement;
     if(target.nodeName  === 'LI'){
-      target.style.border = '1px solid #8758ff' 
+      target.classList.remove(styles.over); 
     }
     const updatedList = todoList.map((item: ITodoItem) => {
       if (item.id === todo.id) {
         return currentTodo;
-      } else if (currentTodo && item.id === currentTodo.id) {
+      } else if (item.id === currentTodo.id) {
         return todo;
       } else {
         return item;
       }
     });
     dispatch(setTodoList(updatedList));
-
   }
 
   return (
