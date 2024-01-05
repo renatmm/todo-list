@@ -21,7 +21,7 @@ function App() {
     }
     dispatch(setInputValue(''))
   };
-
+  
   const removeTodoItem = (id: string) => {
     dispatch(removeTodo(id));
   };

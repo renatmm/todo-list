@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import {setToggle, setTodoList, setCurrentTodo} from '../../redux/actions'
 import styles from './TodoItem.module.css';
-import { DragEvent } from 'react';
+import { DragEvent, FC } from 'react';
 import { IRootState, ITodoItem } from '../../types';
-
 
 interface TodoItemProps {
   todo: {
@@ -14,10 +13,9 @@ interface TodoItemProps {
   onRemoveItem: (id: string) => void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({todo, onRemoveItem}) => {
+const TodoItem: FC<TodoItemProps> = ({todo, onRemoveItem}) => {
   const currentTodo = useSelector((state: IRootState) => state.currentTodo);
   const todoList = useSelector((state: IRootState) => state.todoList);
-
   const dispatch = useDispatch();
 
   const handleDelete = (id: string) => {

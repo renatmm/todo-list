@@ -7,9 +7,15 @@
     padding: 0.75rem 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
-    width: 400px;
     cursor: grab;
 }
+
+.title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
 
 .doneBtn{
     padding: 7px;
@@ -44,4 +50,5 @@
 
 .btnsWrapper{
     margin-left: auto;
+    display: flex;
 }
